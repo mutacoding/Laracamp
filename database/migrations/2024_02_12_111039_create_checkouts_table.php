@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id');
             $table->bigInteger("user_id")->unsigned();
             $table->bigInteger("camp_id")->unsigned();
-            $table->string('card_member', 20);
+            $table->string('card_number', 20);
             $table->date("expired");
             $table->string('cvc', 3);
             $table->boolean('is_paid')->default(false);
