@@ -16,78 +16,40 @@
     <div class="row my-5">
       <table class="table">
         <tbody>
+          @forelse($checkouts as $c)
           <tr class="align-middle">
             <td width="18%">
               <img src="{{asset('images/item_bootcamp.png')}}" height="120" alt="">
             </td>
             <td>
               <p class="mb-2">
-                <strong>Gila Belajar</strong>
+                <strong>{{$c->Camp->title}}</strong>
               </p>
               <p>
-                September 24, 2021
+                {{$c->created_at->format('M d, Y')}}
               </p>
             </td>
             <td>
-              <strong>$280,000</strong>
+              <strong>${{$c->Camp->price}}k</strong>
             </td>
             <td>
-              <strong>Waiting for Payment</strong>
+              @if($c->is_paid)
+                <strong class="text-success">Payment Success</strong>
+              @else
+                <strong>Waiting for Payment</strong>
+              @endif
             </td>
             <td>
-              <a href="#" class="btn btn-primary">
-                Get Invoice
+              <a href="https://wa.me/082367370064?text=Hi, saya ingin bertanya tentang kelas {{$c->Camp->title}}" class="btn btn-primary">
+                Contact Support
               </a>
             </td>
           </tr>
-          <tr class="align-middle">
-            <td width="18%">
-              <img src="{{asset('images/item_bootcamp.png')}}" height="120" alt="">
-            </td>
-            <td>
-              <p class="mb-2">
-                <strong>Gila Belajar</strong>
-              </p>
-              <p>
-                September 24, 2021
-              </p>
-            </td>
-            <td>
-              <strong>$280,000</strong>
-            </td>
-            <td>
-              <strong><span class="text-green">Payment Success</span></strong>
-            </td>
-            <td>
-              <a href="#" class="btn btn-primary">
-                Get Invoice
-              </a>
-            </td>
+          @empty
+          <tr>
+            <td colspan="5">No Data</td>
           </tr>
-          <tr class="align-middle">
-            <td width="18%">
-              <img src="{{asset('images/item_bootcamp.png')}}" height="120" alt=" ">
-            </td>
-            <td>
-              <p class=" mb-2 ">
-                <strong>Gila Belajar</strong>
-              </p>
-              <p>
-                September 24, 2021
-              </p>
-            </td>
-            <td>
-              <strong>$280,000</strong>
-            </td>
-            <td>
-              <strong><span class="text-red ">Canceled</span></strong>
-            </td>
-            <td>
-              <a href="# " class="btn btn-primary ">
-                Get Invoice
-              </a>
-            </td>
-          </tr>
+          @endforelse
         </tbody>
       </table>
     </div>
