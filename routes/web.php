@@ -24,14 +24,17 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('login', function () {
-    return view('login');
-})->name('login');
+// Route::get('login', function () {
+//     return view('login');
+// })->name('login');
 
 // socialite routes
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
 Route::get('auth/google/callback', [UserController::class, 'handleProvideCallback'])->name('user.google.callback');
 
+//midtrans routes
+Route::get('payment/success', [UserController::class, 'midtransCallback']);
+Route::post('payment/success', [UserController::class, 'midtransCallback']);
 
 Route::middleware(['auth'])->group(function(){
     // checkout Route
